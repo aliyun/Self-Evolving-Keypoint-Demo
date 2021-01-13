@@ -179,7 +179,7 @@ class SEKD(object):
 
         keypoints = keypoints
         scores = keypoints[2,:]
-        keypoints = keypoints[:2].T
+        keypoints = keypoints.T
         descriptors = descriptors.T
         inds = np.argsort(scores)[::-1]
         inds = inds[:self.max_keypoints]
