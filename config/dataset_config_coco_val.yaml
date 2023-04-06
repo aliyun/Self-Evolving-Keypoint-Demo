@@ -1,0 +1,6 @@
+-
+    name: coco_val
+    type: webimages
+    root_path_image: ./data/sets/cocodata/val2017_resize
+    root_path_keypoints: ./data/sets/cocodata/keypoints_tmp/val2017_resize
+    image_type: COLOR

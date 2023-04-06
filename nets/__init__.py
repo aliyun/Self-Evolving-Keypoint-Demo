@@ -1,18 +1,37 @@
 # __init__.py
 
 import logging
-from .sekd import SEKD, SEKDNet
+from .sekd import SEKD
+from .sekd_large import SEKDLarge
+from .sekd_mobile import SEKDMobile
+from .sekd_motion import SEKDMotion
+from .sekd_nas import SEKDMobileCV2, SEKDMobile2CV2
+from .sekd_scale import SEKDScale
+from .sekd_unet import SEKDUNet
 
-__all__ = ['SEKD', 'SEKDLarge']
+__all__ = [
+    'SEKD', 'SEKDLarge', 'SEKDMobile', 'SEKDMotion',
+    'SEKDMobileCV2', 'SEKDMobile2CV2', 'SEKDScale',
+    'SEKDUNet']
 
-def get_sekd_model(
-    model_name, weights_path, confidence_threshold = 0.55, nms_radius = 4,
-    max_keypoints = 500, cuda = False, multi_scale = False,
-    sub_pixel_location = False):
+def get_sekd_model(model_name):
     # Create & init model.
     if model_name == 'SEKD':
-        model = SEKD(weights_path, confidence_threshold, nms_radius,
-                     max_keypoints, cuda, multi_scale, sub_pixel_location)
+        model = SEKD()
+    elif model_name == 'SEKDLarge':
+        model = SEKDLarge()
+    elif model_name == 'SEKDMotion':
+        model = SEKDMotion()
+    elif model_name == 'SEKDScale':
+        model = SEKDScale()
+    elif model_name == 'SEKDMobile':
+        model = SEKDMobile()
+    elif model_name == 'SEKDMobileCV2':
+        model = SEKDMobileCV2()
+    elif model_name == 'SEKDMobile2CV2':
+        model = SEKDMobile2CV2()
+    elif model_name == 'SEKDUNet':
+        model = SEKDUNet()
     else:
         logging.critical('Unknown model: {}'.format(model_name))
 
